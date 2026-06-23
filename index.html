@@ -1,0 +1,3139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYH Aero — Aviation Excellence</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Condensed:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C8A84B;
+            --gold-light: #E2C06A;
+            --black: #0C0D0F;
+            --off-white: #F3F1ED;
+            --warm-cream: #ECEAE3;
+            --muted-grey: #58595E;
+            --dark-mid: #16181C;
+            --white: #FFFFFF;
+            --nav-h: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-h);
+            background: rgba(12, 13, 15, 0.96);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(200, 168, 75, 0.2);
+            transition: all .3s;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 2px;
+            transition: all .3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 16px;
+            right: 16px;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform .3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 10px 24px !important;
+            font-weight: 700 !important;
+            border-radius: 2px;
+            transition: background .3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            transition: all .3s;
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--nav-h);
+            left: 0;
+            right: 0;
+            background: var(--black);
+            padding: 24px;
+            z-index: 999;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: color .3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(12, 13, 15, 0.65), rgba(12, 13, 15, 0.75)), url('images/logistics-bg.jpg') center center / cover no-repeat;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(12, 13, 15, 0.9) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(200, 168, 75, 0.15);
+            border: 1px solid rgba(200, 168, 75, 0.4);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 2px;
+            margin-bottom: 28px;
+            animation: fadeUp .8s ease both;
+        }
+
+        .hero-title {
+            font-size: clamp(36px, 6vw, 80px);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 20px;
+            animation: fadeUp .8s .2s ease both;
+        }
+
+        .hero-title em {
+            color: var(--gold);
+            font-style: normal;
+            display: block;
+        }
+
+        .hero-sub {
+            font-size: clamp(14px, 2vw, 18px);
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            animation: fadeUp .8s .4s ease both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeUp .8s .6s ease both;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 16px 36px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(transparent, var(--gold));
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        .scroll-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--gold);
+        }
+
+        .section-sub {
+            font-size: 16px;
+            color: var(--muted-grey);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        .stats-strip {
+            background: var(--black);
+            padding: 50px 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+            cursor: pointer;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s;
+            position: absolute;
+            inset: 0;
+        }
+
+        .service-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 30%, rgba(12, 13, 15, 0.92) 100%);
+            transition: background .4s;
+        }
+
+        .service-card:hover .service-overlay {
+            background: linear-gradient(180deg, rgba(12, 13, 15, 0.2) 0%, rgba(12, 13, 15, 0.95) 100%);
+        }
+
+        .service-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+        }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gold);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 22px;
+        }
+
+        .service-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+        }
+
+        .service-card:hover .service-desc {
+            max-height: 100px;
+        }
+
+        .service-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 12px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all .4s;
+        }
+
+        .service-card:hover .service-arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-section {
+            background: var(--warm-cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .why-image {
+            position: relative;
+        }
+
+        .why-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .why-badge {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            background: var(--gold);
+            padding: 28px 32px;
+            border-radius: 4px;
+        }
+
+        .why-badge-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .why-badge-text {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--black);
+            text-transform: uppercase;
+        }
+
+        .why-features {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .why-feat {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 24px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .why-feat:hover {
+            transform: translateX(6px);
+            box-shadow: 4px 0 0 var(--gold);
+        }
+
+        .why-feat-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            background: rgba(200, 168, 75, 0.12);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .why-feat-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .why-feat-desc {
+            font-size: 13px;
+            color: var(--muted-grey);
+            line-height: 1.6;
+        }
+
+        .partners-section {
+            background: var(--black);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .partners-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 40px;
+        }
+
+        .partners-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .partner-item {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color .3s;
+            cursor: default;
+        }
+
+        .partner-item:hover {
+            color: rgba(200, 168, 75, 0.6);
+        }
+
+        /* ABOUT */
+        .about-hero {
+            padding-top: calc(var(--nav-h) + 80px);
+            padding-bottom: 80px;
+            padding-left: 5%;
+            padding-right: 5%;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(200, 168, 75, 0.08), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-hero-inner {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .about-title span {
+            color: var(--gold);
+        }
+
+        .about-lead {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .about-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 100px 5%;
+        }
+
+        .about-story img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .about-story-text p {
+            font-size: 15px;
+            color: var(--muted-grey);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            background: var(--dark-mid);
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .about-values .section-title {
+            color: var(--white);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(200, 168, 75, 0.15);
+            border-radius: 4px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: border-color .3s, background .3s;
+        }
+
+        .value-card:hover {
+            border-color: rgba(200, 168, 75, 0.4);
+            background: rgba(200, 168, 75, 0.06);
+        }
+
+        .value-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .value-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .value-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 1.6;
+        }
+
+        .team-section {
+            padding: 100px 5%;
+            background: var(--off-white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform .3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .team-img {
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s;
+        }
+
+        .team-card:hover .team-img img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 24px;
+        }
+
+        .team-name {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* PRODUCTS */
+        .products-hero {
+            padding-top: calc(var(--nav-h) + 80px);
+            padding-bottom: 80px;
+            padding-left: 5%;
+            padding-right: 5%;
+            background: linear-gradient(rgba(12, 13, 15, 0.85), rgba(12, 13, 15, 0.92)), url('https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=1800&q=80') center/cover no-repeat;
+        }
+
+        .products-hero-inner {
+            max-width: 700px;
+        }
+
+        .products-hero .section-title {
+            color: var(--white);
+        }
+
+        .products-hero .section-sub {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .products-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 40px 5% 0;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 1px solid rgba(200, 168, 75, 0.3);
+            background: transparent;
+            color: var(--muted-grey);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all .3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            padding: 40px 5% 100px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform .3s, box-shadow .3s;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-category {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 2px;
+        }
+
+        .product-body {
+            padding: 24px;
+        }
+
+        .product-name {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: var(--muted-grey);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .spec-tag {
+            background: var(--off-white);
+            color: var(--muted-grey);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 2px;
+        }
+
+        .product-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--off-white);
+            padding-top: 16px;
+        }
+
+        .enquire-btn {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: color .3s;
+            text-decoration: none;
+        }
+
+        .enquire-btn:hover {
+            color: var(--gold-light);
+        }
+
+        /* SERVICES */
+        .services-page-hero {
+            padding-top: calc(var(--nav-h) + 80px);
+            padding-bottom: 80px;
+            padding-left: 5%;
+            padding-right: 5%;
+            background: linear-gradient(rgba(22, 24, 28, 0.88), rgba(12, 13, 15, 0.94)), url('https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=1800&q=80') center/cover no-repeat;
+        }
+
+        .services-page-hero .section-title {
+            color: var(--white);
+        }
+
+        .services-page-hero .section-sub {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .services-list {
+            padding: 80px 5%;
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .service-row:last-child {
+            border-bottom: none;
+        }
+
+        .service-row.reverse {
+            direction: rtl;
+        }
+
+        .service-row.reverse>* {
+            direction: ltr;
+        }
+
+        .svc-img {
+            height: 400px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .svc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .svc-num {
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(200, 168, 75, 0.12);
+            line-height: 1;
+            margin-bottom: -16px;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .svc-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .svc-desc {
+            font-size: 15px;
+            color: var(--muted-grey);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .svc-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .svc-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--muted-grey);
+        }
+
+        .svc-features li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* CONTACT */
+        .contact-hero {
+            padding-top: calc(var(--nav-h) + 80px);
+            padding-bottom: 80px;
+            padding-left: 5%;
+            padding-right: 5%;
+            background: var(--dark-mid);
+        }
+
+        .contact-hero .section-title {
+            color: var(--white);
+        }
+
+        .contact-hero .section-sub {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .contact-info {
+            background: var(--black);
+            padding: 60px 40px;
+        }
+
+        .contact-info h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 36px;
+        }
+
+        .contact-detail {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            background: rgba(200, 168, 75, 0.1);
+            border: 1px solid rgba(200, 168, 75, 0.2);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .contact-detail-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .contact-detail-val {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all .3s;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        .contact-form-wrap {
+            padding: 60px 40px;
+            background: var(--white);
+        }
+
+        .contact-form-wrap h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 36px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-grey);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            background: var(--off-white);
+            color: var(--black);
+            transition: border-color .3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            height: 140px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 16px 40px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            border-radius: 2px;
+            font-family: 'Roboto', sans-serif;
+            transition: all .3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--gold-light);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            padding: 70px 5% 40px;
+            border-top: 1px solid rgba(200, 168, 75, 0.15);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo-text {
+            font-size: 22px;
+        }
+
+        .footer-about {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.7;
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        .footer-h {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(200, 168, 75, 0.4);
+            letter-spacing: 2px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gold);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 900;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            color: rgba(12, 13, 15, 0.6);
+            margin-bottom: 36px;
+        }
+
+        .btn-dark {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 40px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-dark:hover {
+            background: var(--dark-mid);
+            transform: translateY(-2px);
+        }
+
+        /* TYRES SECTION */
+        .tyres-section {
+            background: var(--dark-mid);
+            padding: 100px 5%;
+        }
+
+        .tyres-section .section-title {
+            color: var(--white);
+        }
+
+        .tyres-section .section-sub {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .tyres-header {
+            margin-bottom: 60px;
+        }
+
+        .tyres-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .tyre-showcase {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(200, 168, 75, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .tyre-showcase img {
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter .5s;
+        }
+
+        .tyre-showcase:hover img {
+            filter: grayscale(0%);
+        }
+
+        .tyre-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 2px;
+        }
+
+        .tyre-models {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .tyre-model {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(200, 168, 75, 0.12);
+            border-radius: 4px;
+            padding: 18px;
+            transition: border-color .3s, background .3s;
+        }
+
+        .tyre-model:hover {
+            border-color: rgba(200, 168, 75, 0.3);
+            background: rgba(200, 168, 75, 0.05);
+        }
+
+        .tyre-model-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .tyre-model-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .tyre-features {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tyre-feat {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 2px solid var(--gold);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tyre-feat-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .tyre-feat-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 2px;
+        }
+
+        .tyre-feat-desc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.5;
+        }
+
+        .tyre-specs-bar {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(200, 168, 75, 0.1);
+            border-radius: 4px;
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        .tyre-specs-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-val {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .spec-unit {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .spec-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* BATTERY SECTION */
+        .battery-section {
+            background: var(--off-white);
+            padding: 100px 5%;
+        }
+
+        .battery-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .battery-intro img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .battery-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .battery-type-card {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            border-top: 3px solid var(--gold);
+            border-radius: 4px;
+            padding: 32px 24px;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .battery-type-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .battery-type-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .battery-type-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .battery-type-desc {
+            font-size: 13px;
+            color: var(--muted-grey);
+            line-height: 1.6;
+        }
+
+        .battery-certs {
+            background: var(--black);
+            border-radius: 4px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        .battery-certs-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .cert-item {
+            background: rgba(200, 168, 75, 0.07);
+            border: 1px solid rgba(200, 168, 75, 0.15);
+            border-radius: 4px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cert-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .cert-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .cert-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 2px;
+        }
+
+        .battery-apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .battery-app-tag {
+            background: rgba(200, 168, 75, 0.08);
+            border: 1px solid rgba(200, 168, 75, 0.15);
+            border-radius: 4px;
+            padding: 14px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .battery-app-tag span {
+            font-size: 18px;
+        }
+
+        @media(max-width:1024px) {
+            .stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .tyres-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .battery-intro {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .battery-types {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .battery-apps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-section {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 60px 5%;
+            }
+
+            .why-badge {
+                position: static;
+                margin-top: 24px;
+                display: inline-block;
+            }
+
+            .about-story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 5%;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .service-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .service-row.reverse {
+                direction: ltr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tyre-models {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .battery-types {
+                grid-template-columns: 1fr;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .battery-apps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:480px) {
+            section {
+                padding: 60px 5%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .battery-apps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-logo" onclick="showPage('home')">
+            <img src="images/RY  logo  copy.png" alt="RYH Aero Logo" class="logo-img">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+            <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+            <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+            <li><a href="#" onclick="showPage('products')" id="nav-products">Products</a></li>
+            <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="showPage('home');toggleMenu()">Home</a>
+        <a href="#" onclick="showPage('about');toggleMenu()">About</a>
+        <a href="#" onclick="showPage('services');toggleMenu()">Services</a>
+        <a href="#" onclick="showPage('products');toggleMenu()">Products</a>
+        <a href="#" onclick="showPage('contact');toggleMenu()">Contact Us</a>
+    </div>
+
+    <!-- ════════════════════ HOME PAGE ════════════════════ -->
+    <div class="page active" id="page-home">
+
+        <section class="hero">
+            <div class="hero-video-bg">
+                <video class="hero-video-bg" autoplay muted loop playsinline>
+                    <source
+                        src="images/vidssave.com Logistics Stock Video Of Roadways AirWays Seaways Railways - Cargo 1080p.mp4"
+                        type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-badge">✈ Global Aviation Solutions</div>
+                <h1 class="hero-title">Elevating Aviation<em>Beyond Limits</em></h1>
+                <p class="hero-sub">Cargo chartering, aircraft spare parts, ground handling, permits & fuelling — your
+                    trusted partner at every altitude.</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary" onclick="showPage('services')">Explore Services</a>
+                    <a href="#" class="btn-outline" onclick="showPage('contact')">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-line"></div>
+                <span class="scroll-label">Scroll</span>
+            </div>
+        </section>
+
+        <div class="stats-strip">
+            <div class="stat-item">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">50+</div>
+                <div class="stat-label">Aircraft Platforms</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">80+</div>
+                <div class="stat-label">Countries Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">24/7</div>
+                <div class="stat-label">Global Support</div>
+            </div>
+        </div>
+
+        <section style="padding:80px 0 0;background:var(--off-white);">
+            <div style="padding:0 5% 50px;">
+                <div class="section-label">What We Do</div>
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+                    <h2 class="section-title" style="margin-bottom:0;">Comprehensive Aviation<br>Solutions</h2>
+                    <a href="#" class="btn-primary" onclick="showPage('services')"
+                        style="font-size:12px;padding:12px 28px;">All Services →</a>
+                </div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80"
+                        alt="Cargo Charter">
+                    <div class="service-overlay"></div>
+                    <div class="service-content">
+                        <div class="service-icon">✈</div>
+                        <div class="service-title">Aircraft Cargo Chartering</div>
+                        <div class="service-desc">On-demand cargo charters for time-sensitive freight, humanitarian, oil
+                            & gas, and project cargo across the globe.</div>
+                        <div class="service-arrow">Learn More →</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1608062720349-a044e289748b?q=80&w=1056&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Spare Parts">
+                    <div class="service-overlay"></div>
+                    <div class="service-content">
+                        <div class="service-icon">⚙</div>
+                        <div class="service-title">Aircraft Spare Parts</div>
+                        <div class="service-desc">Genuine OEM and certified aftermarket spare parts for commercial,
+                            military, and rotary-wing platforms.</div>
+                        <div class="service-arrow">Learn More →</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1653937270204-3fd7aec4c81f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Ground Handling">
+                    <div class="service-overlay"></div>
+                    <div class="service-content">
+                        <div class="service-icon">🛬</div>
+                        <div class="service-title">Ground Handling & Permits</div>
+                        <div class="service-desc">Full ground handling services including permits, ramp handling,
+                            fuelling coordination, and crew assistance.</div>
+                        <div class="service-arrow">Learn More →</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-section">
+            <div class="why-image">
+                <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=900&q=80"
+                    alt="RYH Aero Operations">
+                <div class="why-badge">
+                    <div class="why-badge-num">AAA</div>
+                    <div class="why-badge-text">Rated<br>Company</div>
+                </div>
+            </div>
+            <div>
+                <div class="section-label">Why Choose Us</div>
+                <h2 class="section-title">Trusted by Airlines &<br><span>MRO Operators</span> Worldwide</h2>
+                <p class="section-sub">From remote airstrips to major international hubs, RYH Aero delivers aviation
+                    solutions with precision, speed, and total reliability.</p>
+                <div class="why-features">
+                    <div class="why-feat">
+                        <div class="why-feat-icon">🌐</div>
+                        <div>
+                            <div class="why-feat-title">Global Reach, Local Expertise</div>
+                            <div class="why-feat-desc">Offices and partners across 80+ countries providing on-ground
+                                intelligence and rapid response.</div>
+                        </div>
+                    </div>
+                    <div class="why-feat">
+                        <div class="why-feat-icon">🔒</div>
+                        <div>
+                            <div class="why-feat-title">Certified & Compliant</div>
+                            <div class="why-feat-desc">All parts and operations comply with ICAO, IATA, and FAA/EASA
+                                regulatory standards.</div>
+                        </div>
+                    </div>
+                    <div class="why-feat">
+                        <div class="why-feat-icon">⚡</div>
+                        <div>
+                            <div class="why-feat-title">AOG Priority Response</div>
+                            <div class="why-feat-desc">Aircraft on ground situation? We respond in under 4 hours with
+                                critical parts and support.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYRES SECTION (no brand name) -->
+        <section class="tyres-section">
+            <div class="tyres-header">
+                <div class="section-label">Specialist Products</div>
+                <h2 class="section-title">Aircraft <span style="color:var(--gold);">Tyres</span></h2>
+                <p class="section-sub" style="color:rgba(255,255,255,0.45);">High-performance aircraft tyres for
+                    helicopters and fixed-wing platforms — engineered for extreme conditions.</p>
+            </div>
+            <div class="tyres-grid">
+                <div class="tyre-showcase">
+                    <div class="tyre-badge">Aviation Grade</div>
+                    <img src="`https://images.unsplash.com/photo-1608248086047-12d70e2cd870?q=80&w=1170&auto=format&fit=crop"
+                        alt="Aircraft Tyre">
+                </div>
+                <div class="tyre-info">
+                    <div class="section-label">Platform Compatibility</div>
+                    <h3 class="section-title" style="color:var(--white);font-size:28px;">Tyres for
+                        Every<br><span>Aviation Platform</span></h3>
+                    <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:24px;">Advanced
+                        technology and top-grade materials deliver superior performance across demanding operational
+                        environments.</p>
+                    <div class="tyre-models">
+                        <div class="tyre-model">
+                            <div class="tyre-model-name">MI-8 / MI-17</div>
+                            <div class="tyre-model-sub">Helicopter Series</div>
+                        </div>
+                        <div class="tyre-model">
+                            <div class="tyre-model-name">MI-24</div>
+                            <div class="tyre-model-sub">Attack Helicopter</div>
+                        </div>
+                        <div class="tyre-model">
+                            <div class="tyre-model-name">AN-24 / AN-26</div>
+                            <div class="tyre-model-sub">Transport Aircraft</div>
+                        </div>
+                        <div class="tyre-model">
+                            <div class="tyre-model-name">IL-76</div>
+                            <div class="tyre-model-sub">Heavy Transport</div>
+                        </div>
+                    </div>
+                    <div class="tyre-features">
+                        <div class="tyre-feat">
+                            <div class="tyre-feat-icon">🛞</div>
+                            <div>
+                                <div class="tyre-feat-title">Extended Landing Cycles</div>
+                                <div class="tyre-feat-desc">High durability casing engineered for maximum landing cycles
+                                    per service life.</div>
+                            </div>
+                        </div>
+                        <div class="tyre-feat">
+                            <div class="tyre-feat-icon">⚖️</div>
+                            <div>
+                                <div class="tyre-feat-title">Lightweight & High-Strength</div>
+                                <div class="tyre-feat-desc">Balanced lateral stability with uniform stress distribution
+                                    under load.</div>
+                            </div>
+                        </div>
+                        <div class="tyre-feat">
+                            <div class="tyre-feat-icon">🔩</div>
+                            <div>
+                                <div class="tyre-feat-title">Precision Tread Grooves</div>
+                                <div class="tyre-feat-desc">Precisely designed for optimal ground hold and wear
+                                    resistance in all conditions.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tyre-specs-bar">
+                <div class="tyre-specs-title">Key Performance Specs — 1400×380 Model</div>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-val">1400<span class="spec-unit">×380</span></div>
+                        <div class="spec-label">Size (mm)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-val">310<span class="spec-unit">km/h</span></div>
+                        <div class="spec-label">Speed Rating</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-val">Tubeless</div>
+                        <div class="spec-label">Construction</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-val">Harsh<span class="spec-unit"> ENV</span></div>
+                        <div class="spec-label">Special Casing</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:40px;">
+                <a href="#" class="btn-primary" onclick="showPage('products')">View All Products →</a>
+            </div>
+        </section>
+
+        <!-- AVIATION BATTERIES PREVIEW -->
+        <section class="battery-section">
+            <div class="section-label">Power Solutions</div>
+            <h2 class="section-title">Aircraft <span>Batteries</span></h2>
+            <p class="section-sub">Critical power for aircraft emergency systems — extremely reliable, low on
+                maintenance, and high on efficiency across all aviation platforms.</p>
+
+            <div class="battery-intro" style="margin-top:50px;">
+                <img src="https://images.unsplash.com/photo-1650501728456-124beb39fb06?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Aviation Batteries" style="border-radius:4px;">
+                <div>
+                    <p style="font-size:15px;color:var(--muted-grey);line-height:1.8;margin-bottom:20px;">Batteries are
+                        a critical component onboard to power aircraft emergency systems safely and effectively. As the
+                        last line of defence in the emergency chain, aviation demands stored power solutions that are
+                        extremely reliable, low on maintenance, and high on efficiency.</p>
+                    <p style="font-size:15px;color:var(--muted-grey);line-height:1.8;margin-bottom:28px;">We supply
+                        aviation batteries across three proven technologies, finding applications in commercial and
+                        defence aircraft, helicopters, turboprops, business jets, and UAVs — for new airframes or as
+                        aftermarket replacements.</p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                        <a href="#" class="btn-primary" onclick="showPage('products')"
+                            style="font-size:12px;padding:13px 28px;">View Battery Products →</a>
+                        <a href="#" class="btn-outline" onclick="showPage('contact')"
+                            style="font-size:12px;padding:13px 28px;border-color:rgba(0,0,0,0.2);color:var(--black);">Request
+                            Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="battery-types">
+                <div class="battery-type-card">
+                    <div class="battery-type-icon">🔋</div>
+                    <div class="battery-type-name">Nickel Cadmium (NiCd)</div>
+                    <div class="battery-type-desc">Industry-proven NiCd batteries offering robust performance across
+                        wide temperature ranges. Ideal for high-cycle operations in commercial and military aircraft.
+                    </div>
+                </div>
+                <div class="battery-type-card">
+                    <div class="battery-type-icon">⚡</div>
+                    <div class="battery-type-name">Sealed Lead Acid (SLA)</div>
+                    <div class="battery-type-desc">Cost-effective and maintenance-free sealed lead acid batteries for
+                        general aviation and ground support applications with reliable emergency backup power.</div>
+                </div>
+                <div class="battery-type-card">
+                    <div class="battery-type-icon">🔌</div>
+                    <div class="battery-type-name">Silver Zinc (AgZn)</div>
+                    <div class="battery-type-desc">High energy-density silver zinc batteries delivering superior
+                        power-to-weight ratios for military, aerospace, and UAV platforms requiring peak performance.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="partners-section">
+            <div class="partners-label">Trusted Partners & Certifications</div>
+            <div class="partners-row">
+                <span class="partner-item">IATA</span>
+                <span class="partner-item">ICAO</span>
+                <span class="partner-item">EASA</span>
+                <span class="partner-item">FAA</span>
+                <span class="partner-item">DGCA</span>
+                <span class="partner-item">AOG</span>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Partner with RYH Aero?</h2>
+            <p>Whether it's an urgent AOG, a cargo charter, or a ground handling requirement — we're ready.</p>
+            <a href="#" class="btn-dark" onclick="showPage('contact')">Contact Our Team Today</a>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" onclick="showPage('home')"><img src="images/RY  logo  copy.png"
+                            alt="RYH Aero Logo" class="logo-img"></div>
+                    <p class="footer-about">Global aviation solutions provider specializing in cargo chartering,
+                        aircraft spare parts, tyres, batteries, and comprehensive ground handling services.</p>
+                    <div style="display:flex;gap:10px;">
+                        <a class="social-btn" href="#" title="LinkedIn">in</a>
+                        <a class="social-btn" href="#" title="Twitter">𝕏</a>
+                        <a class="social-btn" href="#" title="Email">✉</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-h">Company</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Services</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('services')">Cargo Charter</a></li>
+                        <li><a href="#" onclick="showPage('services')">Spare Parts</a></li>
+                        <li><a href="#" onclick="showPage('services')">Ground Handling</a></li>
+                        <li><a href="#" onclick="showPage('services')">Permits</a></li>
+                        <li><a href="#" onclick="showPage('services')">Fuelling</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:manager@ryhaero.com">manager@ryhaero.com</a></li>
+                        <!-- <li><a href="tel:+911234567890">+91 12345 67890</a></li> -->
+                        <li><a href="#">Ry Aviation Ltd
+
+                                4th Floor, Ebene Skies,
+                                Rue de l’Institut,
+                                Ebene,
+                                Mauritius</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Send Enquiry</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2025 RYH Aero. All rights reserved.</span>
+                <span class="footer-tagline">ELEVATING AVIATION · BEYOND LIMITS</span>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- ════════════════════ ABOUT PAGE ════════════════════ -->
+    <div class="page" id="page-about">
+        <div class="about-hero">
+            <div class="about-hero-inner">
+                <div class="section-label">Our Story</div>
+                <h1 class="about-title">Aviation is <span>More</span><br>Than a Business</h1>
+                <p class="about-lead">For over 15 years, RYH Aero has been connecting the world through dependable
+                    aviation services — from charter solutions to the smallest spare part that keeps an aircraft flying.
+                </p>
+            </div>
+        </div>
+        <section class="about-story">
+            <img src="https://images.unsplash.com/photo-1474302770737-173ee21bab63?w=900&q=80" alt="RYH Aero">
+            <div class="about-story-text">
+                <div class="section-label">Who We Are</div>
+                <h2 class="section-title">Built on <span>Trust</span>,<br>Driven by Excellence</h2>
+                <<p>
+                    RYH Aero was founded with a single mission: to provide aviation operators with a reliable, one-stop
+                    partner for all their operational needs. Through our global presence and commitment to excellence,
+                    we serve clients across Asia, the Middle East, Africa, and beyond, delivering comprehensive aviation
+                    solutions tailored to the needs of modern operators.
+                    </p>
+                    <p>Our team combines decades of aviation industry expertise with an unwavering commitment to safety,
+                        compliance, and customer satisfaction. We understand that in aviation, delays cost lives and
+                        livelihoods — which is why we operate 24/7 with urgency baked into every process.</p>
+                    <p>From sourcing a critical spare part for an AOG aircraft to coordinating complex multi-leg cargo
+                        charters, we bring the same level of dedication to every client engagement, regardless of scale.
+                    </p>
+                    <div style="margin-top:32px;"><a href="#" class="btn-primary" onclick="showPage('contact')">Work
+                            With Us</a></div>
+            </div>
+        </section>
+        <section class="about-values">
+            <div class="section-label" style="color:rgba(200,168,75,0.7);">Our Foundation</div>
+            <h2 class="section-title">The Values That<br>Drive Us Forward</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <div class="value-title">Precision</div>
+                    <div class="value-desc">Aviation demands zero error. We bring military-grade precision to every part
+                        number, permit, and flight plan.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <div class="value-title">Integrity</div>
+                    <div class="value-desc">Transparent pricing, honest timelines, and genuine partnerships built on
+                        trust that lasts decades.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <div class="value-title">Urgency</div>
+                    <div class="value-desc">Speed is safety in aviation. Our AOG response ensures minimal ground time
+                        and maximum aircraft availability.</div>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <div class="value-title">Global Reach</div>
+                    <div class="value-desc">A worldwide network of partners ensures we deliver wherever your aircraft
+                        needs us — no exceptions.</div>
+                </div>
+            </div>
+        </section>
+        <section class="team-section">
+            <div class="section-label">Our People</div>
+            <h2 class="section-title">The Experts <span>Behind</span><br>Every Mission</h2>
+            <p class="section-sub">Our diverse team of aviation professionals brings together expertise from commercial
+                airlines, military operations, and MRO facilities worldwide.</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img"><img
+                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="CEO"></div>
+                    <div class="team-info">
+                        <div class="team-name">Rajesh Y. Hussain</div>
+                        <div class="team-role">Founder & CEO</div>
+                        <p style="font-size:13px;color:var(--muted-grey);line-height:1.6;margin-top:10px;">20+ years in
+                            aviation logistics and supply chain management across Asia and the Middle East.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><img
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="COO">
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Priya Agarwal</div>
+                        <div class="team-role">Chief Operations Officer</div>
+                        <p style="font-size:13px;color:var(--muted-grey);line-height:1.6;margin-top:10px;">Former
+                            airline operations director with expertise in ground handling and charter operations.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img"><img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+                            alt="Technical Director"></div>
+                    <div class="team-info">
+                        <div class="team-name">Ahmed Al-Rashidi</div>
+                        <div class="team-role">Technical Director</div>
+                        <p style="font-size:13px;color:var(--muted-grey);line-height:1.6;margin-top:10px;">
+                            EASA-certified aircraft engineer specializing in rotary-wing and CIS-origin aircraft
+                            platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="cta-section">
+            <h2>Join Our Global Network</h2>
+            <p>Become a preferred supplier, reseller, or ground handling partner with RYH Aero.</p>
+            <a href="#" class="btn-dark" onclick="showPage('contact')">Partner With Us</a>
+        </div>
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" onclick="showPage('home')"><img src="images/RY  logo  copy.png"
+                            alt="RYH Aero Logo" class="logo-img"></div>
+                    <p class="footer-about">Global aviation solutions — cargo chartering, spare parts, tyres, batteries
+                        & ground handling.</p>
+                </div>
+                <div>
+                    <div class="footer-h">Navigate</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Services</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Cargo Charter</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                        <li><a href="#">Ground Handling</a></li>
+                        <li><a href="#">Batteries & Tyres</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:manager@ryhaero.com">manager@ryhaero.com</a></li>
+                        <li><a href="#">Ry Aviation Ltd
+
+                                4th Floor, Ebene Skies,
+                                Rue de l’Institut,
+                                Ebene,
+                                Mauritius</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span class="footer-copy">© 2025 RYH Aero. All rights reserved.</span><span
+                    class="footer-tagline">ELEVATING AVIATION · BEYOND LIMITS</span></div>
+        </footer>
+    </div>
+
+
+    <!-- ════════════════════ SERVICES PAGE ════════════════════ -->
+    <div class="page" id="page-services">
+        <div class="services-page-hero">
+            <div style="max-width:700px;">
+                <div class="section-label">What We Offer</div>
+                <h1 class="section-title" style="color:var(--white);font-size:clamp(36px,5vw,64px);">End-to-End
+                    Aviation<br><span>Services</span></h1>
+                <p class="section-sub">One partner. Every need. From take-off to touchdown — and everything in between.
+                </p>
+            </div>
+        </div>
+        <div class="services-list">
+            <div class="service-row">
+                <div class="svc-img"><img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=80"
+                        alt="Cargo Charter"></div>
+                <div>
+                    <div class="svc-num">01</div>
+                    <div class="section-label">Core Service</div>
+                    <h2 class="svc-title">Aircraft Cargo Chartering</h2>
+                    <p class="svc-desc">We arrange on-demand cargo charter flights for all types of freight — from
+                        time-critical medical supplies and automotive parts to heavy project cargo and humanitarian aid.
+                        Our network covers freighters of all sizes including AN-124, IL-76, B747F, and more.</p>
+                    <ul class="svc-features">
+                        <li>Full freighter and part-charter options</li>
+                        <li>Dangerous goods & out-of-gauge cargo</li>
+                        <li>Humanitarian & emergency charters</li>
+                        <li>Oil & gas equipment logistics</li>
+                        <li>Door-to-door coordination worldwide</li>
+                    </ul>
+                    <div style="margin-top:28px;"><a href="#" class="btn-primary" onclick="showPage('contact')"
+                            style="font-size:12px;padding:13px 28px;">Request Charter Quote</a></div>
+                </div>
+            </div>
+            <div class="service-row reverse">
+                <div class="svc-img"><img
+                        src="https://images.unsplash.com/photo-1518566107615-f7267099eced?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Spare Parts"></div>
+                <div>
+                    <div class="svc-num">02</div>
+                    <div class="section-label">Supply Chain</div>
+                    <h2 class="svc-title">Aircraft Spare Parts Supply</h2>
+                    <p class="svc-desc">We source and supply certified aircraft spare parts for commercial, military,
+                        and rotary-wing platforms. Specializing in CIS/Russian-origin aircraft (MI-8, MI-17, AN-24,
+                        AN-26, IL-76, TU series) as well as Western platforms through our global supplier network.</p>
+                    <ul class="svc-features">
+                        <li>OEM and certified aftermarket parts</li>
+                        <li>AOG priority sourcing (4-hour response)</li>
+                        <li>Full airworthiness documentation</li>
+                        <li>CIS/Russian-origin aircraft specialists</li>
+                        <li>Rotable & expendable components</li>
+                    </ul>
+                    <div style="margin-top:28px;"><a href="#" class="btn-primary" onclick="showPage('contact')"
+                            style="font-size:12px;padding:13px 28px;">Request Parts Enquiry</a></div>
+                </div>
+            </div>
+            <div class="service-row">
+                <div class="svc-img"><img
+                        src="https://images.unsplash.com/photo-1653937270204-3fd7aec4c81f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Ground Handling"></div>
+                <div>
+                    <div class="svc-num">03</div>
+                    <div class="section-label">Ground Operations</div>
+                    <h2 class="svc-title">Ground Handling & Permits</h2>
+                    <p class="svc-desc">Comprehensive ground handling services including aircraft coordination, crew
+                        assistance, catering, customs facilitation, and full permit management. We secure overflight and
+                        landing permits across 80+ countries with precision and speed.</p>
+                    <ul class="svc-features">
+                        <li>Landing & overflight permit management</li>
+                        <li>Ramp handling & marshalling</li>
+                        <li>Crew transportation & hotel coordination</li>
+                        <li>Customs & immigration facilitation</li>
+                        <li>Slot coordination with ATC</li>
+                    </ul>
+                    <div style="margin-top:28px;"><a href="#" class="btn-primary" onclick="showPage('contact')"
+                            style="font-size:12px;padding:13px 28px;">Request Ground Handling</a></div>
+                </div>
+            </div>
+            <div class="service-row reverse">
+                <div class="svc-img"><img src="https://images.unsplash.com/photo-1606768666853-403c90a981ad?w=900&q=80"
+                        alt="Fuelling"></div>
+                <div>
+                    <div class="svc-num">04</div>
+                    <div class="section-label">Fuel Services</div>
+                    <h2 class="svc-title">Aircraft Fuelling Solutions</h2>
+                    <p class="svc-desc">We coordinate Jet-A1 and AvGas fuelling at airports worldwide, including remote
+                        and hard-to-access locations. Our fuel sourcing network ensures competitive pricing with full
+                        quality assurance and documentation compliance.</p>
+                    <ul class="svc-features">
+                        <li>Jet-A1 and AvGas supply coordination</li>
+                        <li>Remote airstrip fuelling arrangements</li>
+                        <li>Fuel quality documentation (D86, MSDS)</li>
+                        <li>Into-plane fuelling supervision</li>
+                        <li>Competitive uplift pricing</li>
+                    </ul>
+                    <div style="margin-top:28px;"><a href="#" class="btn-primary" onclick="showPage('contact')"
+                            style="font-size:12px;padding:13px 28px;">Fuelling Enquiry</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="cta-section">
+            <h2>Need a Custom Solution?</h2>
+            <p>Our team is ready to design a tailored aviation support package for your specific operational needs.</p>
+            <a href="#" class="btn-dark" onclick="showPage('contact')">Talk to Our Experts</a>
+        </div>
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" onclick="showPage('home')"><img src="images/RY  logo  copy.png"
+                            alt="RYH Aero Logo" class="logo-img"></div>
+                    <p class="footer-about">Global aviation solutions — cargo chartering, spare parts, tyres, batteries
+                        & ground handling.</p>
+                </div>
+                <div>
+                    <div class="footer-h">Navigate</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Services</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Cargo Charter</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                        <li><a href="#">Ground Handling</a></li>
+                        <li><a href="#">Tyres & Batteries</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:manager@ryhaero.com">manager@ryhaero.com</a></li>
+                        <li><a href="#">Ry Aviation Ltd<br>4th Floor, Ebene Skies<br>Rue de l’Institut<br>Ebene,
+                                Mauritius</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span class="footer-copy">© 2025 RYH Aero. All rights reserved.</span><span
+                    class="footer-tagline">ELEVATING AVIATION · BEYOND LIMITS</span></div>
+        </footer>
+    </div>
+
+
+    <!-- ════════════════════ PRODUCTS PAGE ════════════════════ -->
+    <div class="page" id="page-products">
+
+        <div class="products-hero">
+            <div class="products-hero-inner">
+                <div class="section-label">Our Product Range</div>
+                <h1 class="section-title" style="color:var(--white);font-size:clamp(36px,5vw,64px);">Certified
+                    Aviation<br><span>Products</span></h1>
+                <p class="section-sub">Tyres, batteries, spare parts, and consumables sourced from certified
+                    manufacturers for the world's most demanding aviation platforms.</p>
+            </div>
+        </div>
+
+        <div class="products-filter">
+            <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('tyres',this)">Aircraft Tyres</button>
+            <button class="filter-btn" onclick="filterProducts('batteries',this)">Aircraft Batteries</button>
+            <button class="filter-btn" onclick="filterProducts('parts',this)">Spare Parts</button>
+            <button class="filter-btn" onclick="filterProducts('consumables',this)">Consumables</button>
+        </div>
+
+        <div class="products-grid">
+
+            <!-- TYRES -->
+            <div class="product-card" data-cat="tyres">
+                <div class="product-img">
+                    <span class="product-category">Tyres</span>
+                    <img src="https://images.unsplash.com/photo-1684836940170-f92266a0b7e7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="MI-8 Tyre">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">MI-8 / MI-17 Aircraft Tyre Set</div>
+                    <div class="product-desc">High-durability aircraft tyres for the MI-8 and MI-17 helicopter family.
+                        Special casing for harsh operational environments including desert and arctic conditions.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">Helicopter</span>
+                        <span class="spec-tag">Tubeless</span>
+                        <span class="spec-tag">High-Cycle</span>
+                        <span class="spec-tag">Aviation Grade</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">In Stock</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="tyres">
+                <div class="product-img">
+                    <span class="product-category">Tyres</span>
+                    <img src="https://images.unsplash.com/photo-1657733298504-225fcf7872f1?q=80&w=1067&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="IL-76 Tyre">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">IL-76 Main Gear Tyre (1400×380)</div>
+                    <div class="product-desc">Heavy-duty main landing gear tyres for the IL-76 heavy transport aircraft.
+                        Designed for high load cycles and all-weather operations on prepared and semi-prepared surfaces.
+                    </div>
+                    <div class="product-specs">
+                        <span class="spec-tag">1400×380</span>
+                        <span class="spec-tag">IL-76</span>
+                        <span class="spec-tag">310 km/h</span>
+                        <span class="spec-tag">Tubeless</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="tyres">
+                <div class="product-img">
+                    <span class="product-category">Tyres</span>
+                    <img src="https://images.unsplash.com/photo-1518276455915-d0dbe7b2e493?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="AN-24 Tyre">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">AN-24 / AN-26 Landing Gear Tyre</div>
+                    <div class="product-desc">Precision-engineered landing gear tyres for the AN-24 and AN-26 transport
+                        aircraft series with superior wear resistance and balanced lateral stability.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">AN-24</span>
+                        <span class="spec-tag">AN-26</span>
+                        <span class="spec-tag">High Durability</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BATTERIES -->
+            <div class="product-card" data-cat="batteries">
+                <div class="product-img">
+                    <span class="product-category">Batteries</span>
+                    <img src="https://images.unsplash.com/photo-1732030373864-d37573915751?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="NiCd Battery">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Nickel Cadmium (NiCd) Aircraft Battery</div>
+                    <div class="product-desc">Industry-proven NiCd batteries for commercial and defence aircraft,
+                        helicopters, and turboprops. Certified to RTCA DO-293 and MIL-PRF-8565 standards. Robust
+                        performance across wide temperature ranges.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">NiCd</span>
+                        <span class="spec-tag">DO-293</span>
+                        <span class="spec-tag">FAA Approved</span>
+                        <span class="spec-tag">EASA Certified</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--gold);letter-spacing:1px;">AOG Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="batteries">
+                <div class="product-img">
+                    <span class="product-category">Batteries</span>
+                    <img src="https://images.unsplash.com/photo-1742899273038-67ff67477663?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Sealed Lead Acid Battery">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Sealed Lead Acid (SLA) Aircraft Battery</div>
+                    <div class="product-desc">Maintenance-free sealed lead acid batteries for general aviation and
+                        business jets. Meets IEC 60952 and BS EN 2570 standards. Reliable emergency backup power with
+                        proven track record.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">Sealed Lead Acid</span>
+                        <span class="spec-tag">IEC 60952</span>
+                        <span class="spec-tag">Maintenance-Free</span>
+                        <span class="spec-tag">Business Jets</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="batteries">
+                <div class="product-img">
+                    <span class="product-category">Batteries</span>
+                    <img src="https://images.unsplash.com/photo-1676661851244-385a0a355b5e?q=80&w=706&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Silver Zinc Battery">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Silver Zinc (AgZn) Aircraft Battery</div>
+                    <div class="product-desc">High energy-density silver zinc batteries for military aircraft, aerospace
+                        platforms, and UAVs. Superior power-to-weight ratio. Conforms to MIL-PRF-81757 and holds CEMILAC
+                        certification for defence applications.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">Silver Zinc</span>
+                        <span class="spec-tag">MIL-PRF-81757</span>
+                        <span class="spec-tag">Military Grade</span>
+                        <span class="spec-tag">UAV Capable</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">On Request</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPARE PARTS -->
+            <div class="product-card" data-cat="parts">
+                <div class="product-img">
+                    <span class="product-category">Spare Parts</span>
+                    <img src="https://img.freepik.com/premium-photo/aircraft-engine-internal-components-aircraft-engine_820616-5828.jpg"
+                        alt="Engine Parts">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">CIS Aircraft Engine Components</div>
+                    <div class="product-desc">Certified engine components for TV3-117, D-30, and AI-25 turbine engines.
+                        Full traceability documentation and airworthiness release certificates included.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">TV3-117</span>
+                        <span class="spec-tag">D-30</span>
+                        <span class="spec-tag">Certified</span>
+                        <span class="spec-tag">AOG Priority</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--gold);letter-spacing:1px;">AOG Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-cat="parts">
+                <div class="product-img">
+                    <span class="product-category">Spare Parts</span>
+                    <img src="https://images.unsplash.com/photo-1494264274944-1ba7d9b73135?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Avionics">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Avionics & Navigation Units</div>
+                    <div class="product-desc">Serviceable and overhauled avionics units for CIS and Western aircraft
+                        platforms. All units include calibration certificates and installation documentation.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">Overhauled</span>
+                        <span class="spec-tag">Calibrated</span>
+                        <span class="spec-tag">Multi-Platform</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">On Request</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONSUMABLES -->
+            <div class="product-card" data-cat="consumables">
+                <div class="product-img">
+                    <span class="product-category">Consumables</span>
+                    <img src="https://images.unsplash.com/photo-1522798120812-304f8819f4be?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Hydraulic Fluids">
+                </div>
+                <div class="product-body">
+                    <div class="product-name">Aviation Hydraulic & Lubricants</div>
+                    <div class="product-desc">OEM-approved hydraulic fluids, turbine oils, and greases for CIS and
+                        Western aircraft. Full MSDS and quality certificates. Bulk and unit quantity available.</div>
+                    <div class="product-specs">
+                        <span class="spec-tag">OEM Approved</span>
+                        <span class="spec-tag">Hydraulic</span>
+                        <span class="spec-tag">Turbine Oil</span>
+                        <span class="spec-tag">MSDS Included</span>
+                    </div>
+                    <div class="product-cta">
+                        <a href="#" class="enquire-btn" onclick="showPage('contact')">Request Quote →</a>
+                        <span style="font-size:11px;color:var(--muted-grey);letter-spacing:1px;">Bulk Available</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BATTERY CERTIFICATIONS BANNER -->
+        <section class="battery-section" style="padding:80px 5%;">
+            <div class="section-label">Compliance & Approvals</div>
+            <h2 class="section-title">Aviation Battery <span>Certifications</span></h2>
+            <p class="section-sub">Our aviation batteries conform to international standards and carry approvals from
+                the world's foremost aviation regulatory bodies.</p>
+
+            <div class="battery-certs" style="margin-top:40px;">
+                <div class="battery-certs-title">International Standards & Regulatory Approvals</div>
+                <div class="certs-grid">
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">RTCA DO-293</div>
+                            <div class="cert-sub">Rechargeable Lithium Battery Standard</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">MIL-PRF-8565</div>
+                            <div class="cert-sub">Military Battery Performance Spec</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">IEC 60952</div>
+                            <div class="cert-sub">Aircraft Battery International Standard</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">MIL-PRF-81757</div>
+                            <div class="cert-sub">Silver Zinc Battery Military Spec</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">BS EN 2570</div>
+                            <div class="cert-sub">European Aerospace Battery Standard</div>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <div class="cert-name">FAA / EASA / DGCA</div>
+                            <div class="cert-sub">Regulatory Authority Approvals</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:28px;">
+                    <div class="battery-certs-title" style="margin-bottom:16px;">Platform Applications</div>
+                    <div class="battery-apps">
+                        <div class="battery-app-tag"><span>✈</span> Commercial Aircraft</div>
+                        <div class="battery-app-tag"><span>🚁</span> Helicopters</div>
+                        <div class="battery-app-tag"><span>🛡️</span> Defence Aircraft</div>
+                        <div class="battery-app-tag"><span>✈</span> Turboprops</div>
+                        <div class="battery-app-tag"><span>🛩️</span> Business Jets</div>
+                        <div class="battery-app-tag"><span>🛸</span> UAVs & Drones</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div
+            style="background:var(--dark-mid);padding:60px 5%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+            <div>
+                <div class="section-label" style="color:rgba(200,168,75,0.7);">Custom Orders</div>
+                <h2 style="font-size:32px;font-weight:900;color:var(--white);margin-bottom:16px;">Can't Find What<br>You
+                    Need?</h2>
+                <p style="font-size:15px;color:rgba(255,255,255,0.45);line-height:1.8;">Our specialist sourcing team can
+                    locate virtually any certified aircraft part, tyre, battery, or consumable through our global
+                    supplier network. Share your part number and we'll respond within 24 hours.</p>
+                <div style="margin-top:28px;"><a href="#" class="btn-primary" onclick="showPage('contact')">Submit Part
+                        Request →</a></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div
+                    style="background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.15);border-radius:4px;padding:24px;text-align:center;">
+                    <div style="font-size:32px;font-weight:900;color:var(--gold);">5000+</div>
+                    <div
+                        style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">
+                        Part Numbers</div>
+                </div>
+                <div
+                    style="background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.15);border-radius:4px;padding:24px;text-align:center;">
+                    <div style="font-size:32px;font-weight:900;color:var(--gold);">4hr</div>
+                    <div
+                        style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">
+                        AOG Response</div>
+                </div>
+                <div
+                    style="background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.15);border-radius:4px;padding:24px;text-align:center;">
+                    <div style="font-size:32px;font-weight:900;color:var(--gold);">80+</div>
+                    <div
+                        style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">
+                        Countries</div>
+                </div>
+                <div
+                    style="background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.15);border-radius:4px;padding:24px;text-align:center;">
+                    <div style="font-size:32px;font-weight:900;color:var(--gold);">100%</div>
+                    <div
+                        style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase;margin-top:4px;">
+                        Certified Parts</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" onclick="showPage('home')"><img src="images/RY  logo  copy.png"
+                            alt="RYH Aero Logo" class="logo-img"></div>
+                    <p class="footer-about">Global aviation solutions — cargo chartering, spare parts, tyres, batteries
+                        & ground handling.</p>
+                </div>
+                <div>
+                    <div class="footer-h">Navigate</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Products</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Aircraft Tyres</a></li>
+                        <li><a href="#">Aircraft Batteries</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                        <li><a href="#">Consumables</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:manager@ryhaero.com">manager@ryhaero.com</a></li>
+                        <li><a href="#">Ry Aviation Ltd
+
+                                4th Floor, Ebene Skies,
+                                Rue de l’Institut,
+                                Ebene,
+                                Mauritius</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span class="footer-copy">© 2025 RYH Aero. All rights reserved.</span><span
+                    class="footer-tagline">ELEVATING AVIATION · BEYOND LIMITS</span></div>
+        </footer>
+    </div>
+
+
+    <!-- ════════════════════ CONTACT PAGE ════════════════════ -->
+    <div class="page" id="page-contact">
+        <div class="contact-hero">
+            <div class="section-label">Get In Touch</div>
+            <h1 class="section-title" style="color:var(--white);font-size:clamp(36px,5vw,64px);">Let's Solve
+                Your<br><span>Aviation Challenge</span></h1>
+            <p class="section-sub">Whether you need an urgent AOG response, a cargo charter, or a supply quotation — our
+                team responds within hours, not days.</p>
+        </div>
+        <div class="contact-section">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-detail">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <div class="contact-detail-label">Headquarters</div>
+                        <div class="contact-detail-val">RY Aviation LTD
+
+                            4th FLOOR, EBENE SKIES RUE DE L’ INSTITUT, EBENE, MAURITIUS</div>
+                    </div>
+                </div>
+                <!-- <div class="contact-detail"><div class="contact-icon">📞</div><div><div class="contact-detail-label">Phone / WhatsApp</div><div class="contact-detail-val">+91 12345 67890<br>+91 98765 43210</div></div></div> -->
+                <div class="contact-detail">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <div class="contact-detail-label">Email</div>
+                        <div class="contact-detail-val">manager@ryhaero.com</div>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <div class="contact-detail-label">Operations</div>
+                        <div class="contact-detail-val">24/7 — 365 Days<br>AOG Response: 4 Hours</div>
+                    </div>
+                </div>
+                <div class="contact-socials">
+                    <a class="social-btn" href="#" title="LinkedIn">in</a>
+                    <a class="social-btn" href="#" title="WhatsApp">W</a>
+                    <a class="social-btn" href="#" title="Email">✉</a>
+                </div>
+            </div>
+            <div class="contact-form-wrap">
+                <h3>Send Us An Enquiry</h3>
+                <div class="form-row">
+                    <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+                    <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Email Address</label><input type="email"
+                            placeholder="john@airline.com"></div>
+                    <div class="form-group"><label>Phone / WhatsApp</label><input type="tel"
+                            placeholder="+1 234 567 8900"></div>
+                </div>
+                <div class="form-group"><label>Company / Organization</label><input type="text"
+                        placeholder="Airline / MRO / Operator Name"></div>
+                <div class="form-group">
+                    <label>Service Required</label>
+                    <select>
+                        <option value="">Select a service...</option>
+                        <option>Aircraft Cargo Chartering</option>
+                        <option>Aircraft Spare Parts</option>
+                        <option>Aircraft Tyres</option>
+                        <option>Aircraft Batteries (NiCd / SLA / AgZn)</option>
+                        <option>Ground Handling</option>
+                        <option>Landing / Overflight Permits</option>
+                        <option>Fuelling Services</option>
+                        <option>AOG Emergency Support</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Message / Requirements</label><textarea
+                        placeholder="Please describe your requirements, aircraft type, part numbers, route, or any other details..."></textarea>
+                </div>
+                <button class="submit-btn" onclick="handleSubmit(this)">Send Enquiry →</button>
+            </div>
+        </div>
+        <div style="padding:80px 5%;background:var(--off-white);">
+            <div style="text-align:center;margin-bottom:50px;">
+                <div class="section-label">Where We Operate</div>
+                <h2 class="section-title">Global Coverage,<br><span>Local Presence</span></h2>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+                <div style="background:var(--white);border-radius:4px;padding:28px;border-left:3px solid var(--gold);">
+                    <div style="font-size:24px;margin-bottom:10px;">🌏</div>
+                    <div style="font-weight:700;margin-bottom:6px;">Asia Pacific</div>
+                    <div style="font-size:13px;color:var(--muted-grey);">India, UAE, Singapore, Thailand, Philippines
+                    </div>
+                </div>
+                <div style="background:var(--white);border-radius:4px;padding:28px;border-left:3px solid var(--gold);">
+                    <div style="font-size:24px;margin-bottom:10px;">🌍</div>
+                    <div style="font-weight:700;margin-bottom:6px;">Africa</div>
+                    <div style="font-size:13px;color:var(--muted-grey);">Kenya, Nigeria, Angola, Ethiopia, South Africa
+                    </div>
+                </div>
+                <div style="background:var(--white);border-radius:4px;padding:28px;border-left:3px solid var(--gold);">
+                    <div style="font-size:24px;margin-bottom:10px;">🌐</div>
+                    <div style="font-weight:700;margin-bottom:6px;">CIS & Russia</div>
+                    <div style="font-size:13px;color:var(--muted-grey);">Kazakhstan, Uzbekistan, Azerbaijan, Georgia
+                    </div>
+                </div>
+                <div style="background:var(--white);border-radius:4px;padding:28px;border-left:3px solid var(--gold);">
+                    <div style="font-size:24px;margin-bottom:10px;">🌎</div>
+                    <div style="font-weight:700;margin-bottom:6px;">Americas & Europe</div>
+                    <div style="font-size:13px;color:var(--muted-grey);">USA, UK, Germany, Colombia, Brazil</div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo" onclick="showPage('home')"><img src="images/RY  logo  copy.png"
+                            alt="RYH Aero Logo" class="logo-img"></div>
+                    <p class="footer-about">Global aviation solutions — cargo chartering, spare parts, tyres, batteries
+                        & ground handling.</p>
+                </div>
+                <div>
+                    <div class="footer-h">Navigate</div>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('services')">Services</a></li>
+                        <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Services</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Cargo Charter</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                        <li><a href="#">Ground Handling</a></li>
+                        <li><a href="#">Batteries & Tyres</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-h">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:manager@ryhaero.com">manager@ryhaero.com</a></li>
+                        <li></li>
+                        <li><a href="#">Ry Aviation Ltd
+
+                                4th Floor, Ebene Skies,
+                                Rue de l’Institut,
+                                Ebene,
+                                Mauritius</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span class="footer-copy">© 2025 RYH Aero. All rights reserved.</span><span
+                    class="footer-tagline">ELEVATING AVIATION · BEYOND LIMITS</span></div>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(name) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            document.getElementById('page-' + name).classList.add('active');
+            const navEl = document.getElementById('nav-' + name);
+            if (navEl) navEl.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+        function filterProducts(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (cat === 'all' || card.dataset.cat === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        function handleSubmit(btn) {
+            const orig = btn.textContent;
+            btn.textContent = '✓ Enquiry Sent! We\'ll respond within 4 hours.';
+            btn.style.background = '#16181C';
+            btn.style.color = '#C8A84B';
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 4000);
+        }
+        window.addEventListener('load', () => {
+            const nums = document.querySelectorAll('.stat-num');
+            nums.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 600 + Math.random() * 400);
+            });
+        });
+    </script>
+</body>
+
+</html>
