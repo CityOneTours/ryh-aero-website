@@ -2976,40 +2976,61 @@
                     <a class="social-btn" href="#" title="Email">✉</a>
                 </div>
             </div>
-            <div class="contact-form-wrap">
-                <h3>Send Us An Enquiry</h3>
-                <div class="form-row">
-                    <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
-                    <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group"><label>Email Address</label><input type="email"
-                            placeholder="john@airline.com"></div>
-                    <div class="form-group"><label>Phone / WhatsApp</label><input type="tel"
-                            placeholder="+1 234 567 8900"></div>
-                </div>
-                <div class="form-group"><label>Company / Organization</label><input type="text"
-                        placeholder="Airline / MRO / Operator Name"></div>
-                <div class="form-group">
-                    <label>Service Required</label>
-                    <select>
-                        <option value="">Select a service...</option>
-                        <option>Aircraft Cargo Chartering</option>
-                        <option>Aircraft Spare Parts</option>
-                        <option>Aircraft Tyres</option>
-                        <option>Aircraft Batteries (NiCd / SLA / AgZn)</option>
-                        <option>Ground Handling</option>
-                        <option>Landing / Overflight Permits</option>
-                        <option>Fuelling Services</option>
-                        <option>AOG Emergency Support</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>Message / Requirements</label><textarea
-                        placeholder="Please describe your requirements, aircraft type, part numbers, route, or any other details..."></textarea>
-                </div>
-                <button class="submit-btn" onclick="handleSubmit(this)">Send Enquiry →</button>
-            </div>
+            <form class="contact-form-wrap" action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="1978e0c1-68f0-4fea-b2e0-16fb52bcc785">
+
+    <h3>Send Us An Enquiry</h3>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="John" required>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="john@airline.com" required>
+        </div>
+        <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" name="phone" placeholder="+1 234 567 8900" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company / Organization</label>
+        <input type="text" name="company" placeholder="Airline / MRO / Operator Name">
+    </div>
+
+    <div class="form-group">
+        <label>Service Required</label>
+        <select name="service_required" required>
+            <option value="">Select a service...</option>
+            <option>Aircraft Cargo Chartering</option>
+            <option>Aircraft Spare Parts</option>
+            <option>Aircraft Tyres</option>
+            <option>Aircraft Batteries (NiCd / SLA / AgZn)</option>
+            <option>Ground Handling</option>
+            <option>Landing / Overflight Permits</option>
+            <option>Fuelling Services</option>
+            <option>AOG Emergency Support</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Message / Requirements</label>
+        <textarea name="message" placeholder="Please describe your requirements, aircraft type, part numbers, route, or any other details..." required></textarea>
+    </div>
+
+    <button class="submit-btn" type="submit">Send Enquiry →</button>
+</form>
         </div>
         <div style="padding:80px 5%;background:var(--off-white);">
             <div style="text-align:center;margin-bottom:50px;">
